@@ -1,1 +1,67 @@
-/* Add styles here */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: oklch(95.59% .042 250.39);
+    background-image: radial-gradient(circle, oklch(98.59% .042 250.39) 0%, oklch(90.59% .042 250.39) 100%);
+}
+
+.container {
+    text-align: center;
+    padding: 2rem;
+    background-color: oklch(99.59% .002 250.39 / .5);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px oklch(0% 0 0 / .1);
+    backdrop-filter: blur(10px);
+    border: 1px solid oklch(99.59% .002 250.39 / .2);
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: oklch(40% .24 278);
+    text-shadow: 0 2px 5px oklch(0% 0 0 / .1);
+}
+
+.lotto-numbers-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+#generate-btn {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    color: white;
+    background-color: oklch(65% .24 278);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px oklch(65% .24 278 / .4);
+}
+
+#generate-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px oklch(65% .24 278 / .6);
+}
+
+#generate-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 5px 15px oklch(65% .24 278 / .4);
+}
+
+lotto-ball {
+    --ball-color: oklch(70% .24 30);
+}
