@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사이트 소개 - 동물상 테스트</title>
+    <meta name="description" content="동물상 테스트 사이트의 운영 목적, 사용된 AI 기술, 그리고 문의·제안 방법을 안내합니다.">
+    <meta property="og:title" content="사이트 소개 - 동물상 테스트">
+    <meta property="og:description" content="동물상 테스트의 운영 목적과 기술 소개, 연락처.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ko_KR">
+    <link rel="canonical" href="https://juangilblue.github.io/product-builder-lecture/about.html">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🐶%3C/text%3E%3C/svg%3E">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4924318808009309"
+         crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="theme.js"></script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="nav-wrapper">
+            <a href="./" class="brand">🐶 동물상 테스트 🐱</a>
+            <ul class="nav-links">
+                <li><a href="./">테스트</a></li>
+                <li><a href="./guide.html">동물상 가이드</a></li>
+                <li><a href="./about.html" class="active">소개</a></li>
+            </ul>
+            <button id="theme-toggle" aria-label="다크 모드 전환">🌓</button>
+        </div>
+    </header>
+
+    <main>
+        <h1 class="page-title">사이트 소개</h1>
+        <p class="page-lead">동물상 테스트는 누구나 가볍게 즐길 수 있는 AI 기반 인상 분석 사이트입니다. 강아지상과 고양이상이라는 친숙한 분류를 통해, 사진 속 첫인상의 매력을 새롭게 발견할 수 있도록 만들어졌어요.</p>
+
+        <section class="card">
+            <h2>운영 목적</h2>
+            <p>이 사이트는 머신러닝을 활용한 이미지 분류 기술을 일반 사용자가 직접 체험할 수 있도록 만든 학습·체험 프로젝트로 시작했어요. 어렵게만 느껴지는 AI 기술을 ‘동물상’이라는 누구나 익숙한 주제와 결합해, 부담 없이 가지고 놀 수 있는 형태로 풀어냈습니다.</p>
+            <p>방문자에게는 다음과 같은 가치를 제공하고자 합니다.</p>
+            <ul>
+                <li>가입이나 결제 없이 누구나 무료로 사용할 수 있는 환경</li>
+                <li>사진을 업로드하지 않아도 브라우저 안에서 안전하게 분석되는 구조</li>
+                <li>단순 결과 출력에 그치지 않고, 동물상별 특징과 스타일링 가이드까지 함께 안내</li>
+                <li>친구·가족과 함께 즐기며 대화를 시작할 수 있는 가벼운 콘텐츠</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>사용된 기술</h2>
+            <p>분석 모델은 Google에서 제공하는 <strong>Teachable Machine</strong>을 통해 직접 학습되었습니다. 이미지 분류 모델을 손쉽게 만들 수 있는 도구로, 다양한 데이터를 학습시켜 강아지상·고양이상을 분류하는 모델을 구성했어요.</p>
+            <ul>
+                <li><strong>모델:</strong> Teachable Machine Image Classifier</li>
+                <li><strong>실행 환경:</strong> TensorFlow.js (브라우저 내 실행)</li>
+                <li><strong>인터페이스:</strong> HTML, CSS, 바닐라 JavaScript</li>
+                <li><strong>호스팅:</strong> 정적 호스팅 기반 (서버 측 데이터 저장 없음)</li>
+            </ul>
+            <p>모든 추론은 사용자의 브라우저에서 직접 실행됩니다. 이미지가 외부 서버로 전송되거나 어딘가에 저장되지 않으므로, 개인 사진을 안심하고 사용하실 수 있어요. 자세한 데이터 처리 정책은 <a href="./privacy.html">개인정보처리방침</a>에서 확인하실 수 있습니다.</p>
+        </section>
+
+        <section class="card">
+            <h2>모델의 한계와 책임</h2>
+            <p>학습된 데이터의 양과 다양성에 따라 결과가 달라질 수 있어요. 예를 들어 다음과 같은 상황에서는 정확도가 낮아질 수 있습니다.</p>
+            <ul>
+                <li>얼굴이 정면이 아니거나 일부가 가려진 사진</li>
+                <li>조명이 너무 어둡거나 밝아서 이목구비가 흐릿한 사진</li>
+                <li>여러 사람이 함께 찍힌 사진</li>
+                <li>강아지·고양이 외 동물상에 가까운 인상</li>
+            </ul>
+            <p>이 점을 고려해, 결과는 외모 평가나 자기 판단의 절대적인 기준이 아닌 <strong>참고용 재미 콘텐츠</strong>로 받아들여 주세요. 사이트는 사용자에게 어떠한 외모 기준도 제시하지 않으며, 모든 인상은 그 자체로 고유한 매력을 가진다고 믿어요.</p>
+        </section>
+
+        <section class="card">
+            <h2>문의 및 제안</h2>
+            <p>오류 신고, 기능 제안, 협업 제안 등 어떤 의견이라도 환영합니다. 아래 폼을 통해 메시지를 남겨주시면 검토 후 답변드릴게요.</p>
+            <form action="https://formspree.io/f/mjglpopp" method="POST" class="contact-form">
+                <input type="email" name="email" placeholder="이메일 주소" required>
+                <input type="text" name="subject" placeholder="제목 (예: 기능 제안)">
+                <textarea name="message" placeholder="문의 내용을 자유롭게 적어주세요." required></textarea>
+                <button type="submit">메시지 보내기</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-wrapper">
+            <div>© 2026 동물상 테스트. 모든 권리 보유.</div>
+            <ul class="footer-links">
+                <li><a href="./about.html">소개</a></li>
+                <li><a href="./guide.html">동물상 가이드</a></li>
+                <li><a href="./privacy.html">개인정보처리방침</a></li>
+                <li><a href="./terms.html">이용약관</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>

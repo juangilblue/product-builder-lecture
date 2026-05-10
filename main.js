@@ -25,16 +25,17 @@ const webcamToggleBtn = document.getElementById("webcam-toggle-btn");
 const resultSection = document.getElementById("result-section");
 const verdictEl = document.getElementById("verdict");
 const resultBarsEl = document.getElementById("result-bars");
-const themeToggle = document.getElementById("theme-toggle");
 
-// Theme
-if (localStorage.getItem("theme") === "dark") {
-  document.body.classList.add("dark-mode");
+if (!loadingEl) {
+  // Not on the test page; do nothing.
+} else {
+  init();
 }
-themeToggle.addEventListener("click", () => {
-  document.body.classList.toggle("dark-mode");
-  localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
-});
+
+async function init() {
+  await loadModel();
+  bindEvents();
+}
 
 async function loadModel() {
   try {
@@ -47,9 +48,37 @@ async function loadModel() {
   }
 }
 
-// Mode switching
-uploadModeBtn.addEventListener("click", () => switchMode("upload"));
-webcamModeBtn.addEventListener("click", () => switchMode("webcam"));
+function bindEvents() {
+  uploadModeBtn.addEventListener("click", () => switchMode("upload"));
+  webcamModeBtn.addEventListener("click", () => switchMode("webcam"));
+
+  fileInput.addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (file) handleImageFile(file);
+  });
+
+  uploadArea.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    uploadArea.classList.add("dragover");
+  });
+  uploadArea.addEventListener("dragleave", () => uploadArea.classList.remove("dragover"));
+  uploadArea.addEventListener("drop", (e) => {
+    e.preventDefault();
+    uploadArea.classList.remove("dragover");
+    const file = e.dataTransfer.files[0];
+    if (file && file.type.startsWith("image/")) handleImageFile(file);
+  });
+
+  webcamToggleBtn.addEventListener("click", async () => {
+    if (webcam) {
+      stopWebcam();
+      webcamToggleBtn.textContent = "웹캠 시작";
+    } else {
+      await startWebcam();
+      webcamToggleBtn.textContent = "웹캠 종료";
+    }
+  });
+}
 
 function switchMode(mode) {
   if (mode === "upload") {
@@ -58,6 +87,7 @@ function switchMode(mode) {
     uploadSection.classList.remove("hidden");
     webcamSection.classList.add("hidden");
     stopWebcam();
+    webcamToggleBtn.textContent = "웹캠 시작";
   } else {
     webcamModeBtn.classList.add("active");
     uploadModeBtn.classList.remove("active");
@@ -67,30 +97,13 @@ function switchMode(mode) {
   resultSection.classList.add("hidden");
 }
 
-// Upload handling
-fileInput.addEventListener("change", (e) => {
-  const file = e.target.files[0];
-  if (file) handleImageFile(file);
-});
-
-uploadArea.addEventListener("dragover", (e) => {
-  e.preventDefault();
-  uploadArea.classList.add("dragover");
-});
-uploadArea.addEventListener("dragleave", () => uploadArea.classList.remove("dragover"));
-uploadArea.addEventListener("drop", (e) => {
-  e.preventDefault();
-  uploadArea.classList.remove("dragover");
-  const file = e.dataTransfer.files[0];
-  if (file && file.type.startsWith("image/")) handleImageFile(file);
-});
-
 function handleImageFile(file) {
   const reader = new FileReader();
   reader.onload = (e) => {
     previewImg.src = e.target.result;
     previewImg.classList.remove("hidden");
-    uploadArea.querySelector(".upload-placeholder").classList.add("hidden");
+    const placeholder = uploadArea.querySelector(".upload-placeholder");
+    if (placeholder) placeholder.classList.add("hidden");
     previewImg.onload = () => predictImage(previewImg);
   };
   reader.readAsDataURL(file);
@@ -102,17 +115,6 @@ async function predictImage(imgEl) {
   showResult(predictions);
 }
 
-// Webcam handling
-webcamToggleBtn.addEventListener("click", async () => {
-  if (webcam) {
-    stopWebcam();
-    webcamToggleBtn.textContent = "웹캠 시작";
-  } else {
-    await startWebcam();
-    webcamToggleBtn.textContent = "웹캠 종료";
-  }
-});
-
 async function startWebcam() {
   try {
     webcam = new tmImage.Webcam(280, 280, true);
@@ -122,7 +124,7 @@ async function startWebcam() {
     webcamContainer.appendChild(webcam.canvas);
     webcamLoop();
   } catch (err) {
-    alert("웹캠을 사용할 수 없어요. 권한을 확인해주세요.");
+    alert("웹캠을 사용할 수 없어요. 브라우저 권한을 확인해주세요.");
     console.error(err);
   }
 }
@@ -146,7 +148,6 @@ async function webcamLoop() {
   webcamLoopId = requestAnimationFrame(webcamLoop);
 }
 
-// Result rendering
 function showResult(predictions) {
   resultSection.classList.remove("hidden");
   predictions.sort((a, b) => b.probability - a.probability);
@@ -172,5 +173,3 @@ function showResult(predictions) {
     resultBarsEl.appendChild(bar);
   });
 }
-
-loadModel();

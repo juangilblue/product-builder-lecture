@@ -3,64 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>동물상 테스트 - 강아지상 vs 고양이상</title>
+    <title>동물상 테스트 - 강아지상 vs 고양이상 AI 분석</title>
+    <meta name="description" content="AI가 사진을 분석해 강아지상인지 고양이상인지 알려드립니다. 무료로 즉시 결과를 확인하고, 동물상별 특징과 매력 포인트도 함께 살펴보세요.">
+    <meta name="keywords" content="동물상 테스트, 강아지상, 고양이상, 얼굴 분석, AI 테스트, 동물상 가이드">
+    <meta name="author" content="동물상 테스트">
+    <meta property="og:title" content="동물상 테스트 - 강아지상 vs 고양이상 AI 분석">
+    <meta property="og:description" content="AI가 사진을 분석해 강아지상인지 고양이상인지 알려드립니다. 무료로 즉시 결과를 확인하세요.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ko_KR">
+    <link rel="canonical" href="https://juangilblue.github.io/product-builder-lecture/">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🐶%3C/text%3E%3C/svg%3E">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4924318808009309"
          crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
+    <script src="theme.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <button id="theme-toggle" aria-label="Toggle Dark Mode">🌓</button>
-        <h1>🐶 동물상 테스트 🐱</h1>
-        <p class="subtitle">사진을 업로드하면 강아지상인지 고양이상인지 알려드려요!</p>
-
-        <div id="loading" class="loading">모델을 불러오는 중...</div>
-
-        <div id="main-content" class="hidden">
-            <div class="mode-buttons">
-                <button id="upload-mode-btn" class="mode-btn active">📷 사진 업로드</button>
-                <button id="webcam-mode-btn" class="mode-btn">🎥 웹캠</button>
-            </div>
-
-            <div id="upload-section" class="input-section">
-                <label for="file-input" class="upload-area" id="upload-area">
-                    <div class="upload-placeholder">
-                        <div class="upload-icon">📁</div>
-                        <p>클릭하거나 사진을 끌어다 놓으세요</p>
-                        <p class="upload-hint">JPG, PNG 지원</p>
-                    </div>
-                    <img id="preview-img" class="hidden" alt="preview">
-                </label>
-                <input type="file" id="file-input" accept="image/*" hidden>
-            </div>
-
-            <div id="webcam-section" class="input-section hidden">
-                <div id="webcam-container"></div>
-                <button id="webcam-toggle-btn" class="action-btn">웹캠 시작</button>
-            </div>
-
-            <div id="result-section" class="result-section hidden">
-                <h2 id="verdict"></h2>
-                <div id="result-bars" class="result-bars"></div>
-            </div>
+    <header class="site-header">
+        <div class="nav-wrapper">
+            <a href="./" class="brand">🐶 동물상 테스트 🐱</a>
+            <ul class="nav-links">
+                <li><a href="./" class="active">테스트</a></li>
+                <li><a href="./guide.html">동물상 가이드</a></li>
+                <li><a href="./about.html">소개</a></li>
+            </ul>
+            <button id="theme-toggle" aria-label="다크 모드 전환">🌓</button>
         </div>
+    </header>
 
-        <div class="contact-section">
-            <hr>
-            <h3>제휴 문의</h3>
-            <form action="https://formspree.io/f/mjglpopp" method="POST" id="contact-form">
-                <div class="form-group">
-                    <input type="email" name="email" placeholder="이메일 주소" required>
+    <main>
+        <section class="hero">
+            <h1>🐶 동물상 테스트 🐱</h1>
+            <p class="subtitle">사진 한 장이면 끝! AI가 강아지상인지 고양이상인지 알려드려요.</p>
+        </section>
+
+        <section class="test-card" aria-labelledby="test-heading">
+            <h2 id="test-heading" class="visually-hidden" style="position:absolute;left:-9999px;">테스트 영역</h2>
+            <div id="loading" class="loading">AI 모델을 불러오는 중...</div>
+
+            <div id="main-content" class="hidden">
+                <div class="mode-buttons" role="tablist">
+                    <button id="upload-mode-btn" class="mode-btn active" role="tab">📷 사진 업로드</button>
+                    <button id="webcam-mode-btn" class="mode-btn" role="tab">🎥 웹캠</button>
                 </div>
-                <div class="form-group">
-                    <textarea name="message" placeholder="문의 내용" required></textarea>
+
+                <div id="upload-section" class="input-section">
+                    <label for="file-input" class="upload-area" id="upload-area">
+                        <div class="upload-placeholder">
+                            <div class="upload-icon">📁</div>
+                            <p>클릭하거나 사진을 끌어다 놓으세요</p>
+                            <p class="upload-hint">JPG, PNG 지원 · 정면 얼굴 사진 권장</p>
+                        </div>
+                        <img id="preview-img" class="hidden" alt="업로드된 이미지 미리보기">
+                    </label>
+                    <input type="file" id="file-input" accept="image/*" hidden>
                 </div>
-                <button type="submit" id="submit-btn">보내기</button>
-            </form>
+
+                <div id="webcam-section" class="input-section hidden">
+                    <div id="webcam-container"></div>
+                    <button id="webcam-toggle-btn" class="action-btn">웹캠 시작</button>
+                </div>
+
+                <div id="result-section" class="result-section hidden" aria-live="polite">
+                    <h2 id="verdict"></h2>
+                    <div id="result-bars" class="result-bars"></div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>동물상 테스트란 무엇인가요?</h2>
+            <p>동물상 테스트는 사람의 얼굴 인상을 동물의 분위기에 빗대어 표현하는 한국에서 널리 알려진 재미있는 분류 방식이에요. 이목구비의 비율, 눈매, 입꼬리, 얼굴형 같은 시각적 특징을 종합해서 어떤 동물의 인상에 가까운지를 판단하죠. 친구들과 어울려 놀거나 자기 매력을 새롭게 발견할 때 자주 활용됩니다.</p>
+            <p>이 사이트의 테스트는 Google Teachable Machine으로 직접 학습시킨 이미지 분류 AI를 사용해 강아지상과 고양이상 두 가지로 분류해드려요. 모델은 사진의 전반적인 인상을 학습된 데이터와 비교해 가장 가까운 쪽의 확률을 계산합니다.</p>
+        </section>
+
+        <section>
+            <h2>두 가지 인상, 한눈에 비교하기</h2>
+            <div class="two-col">
+                <div class="card">
+                    <h3>🐶 강아지상의 인상</h3>
+                    <ul class="feature-list">
+                        <li>동그랗고 큰 눈</li>
+                        <li>짧고 둥근 코끝</li>
+                        <li>도톰한 볼살과 부드러운 턱선</li>
+                        <li>웃을 때 환하게 올라가는 입꼬리</li>
+                        <li>전체적으로 친근하고 다정한 분위기</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🐱 고양이상의 인상</h3>
+                    <ul class="feature-list">
+                        <li>끝이 살짝 올라간 눈매</li>
+                        <li>또렷한 콧대와 좁은 코</li>
+                        <li>갸름한 V라인 턱</li>
+                        <li>얇고 단정한 입술</li>
+                        <li>도도하고 시크한 분위기</li>
+                    </ul>
+                </div>
+            </div>
+            <p style="margin-top: 1rem;">더 자세한 특징과 매력 포인트가 궁금하다면 <a href="./guide.html">동물상 가이드</a> 페이지를 확인해보세요.</p>
+        </section>
+
+        <section>
+            <h2>이렇게 사용해보세요</h2>
+            <ol>
+                <li><strong>정면 사진 준비:</strong> 얼굴이 잘 보이는 정면 사진일수록 정확도가 높아져요. 모자나 마스크로 가려진 사진은 피해주세요.</li>
+                <li><strong>업로드 또는 웹캠:</strong> 사진 파일을 업로드하거나, 웹캠을 켜서 실시간으로 분석할 수 있어요.</li>
+                <li><strong>결과 확인:</strong> AI가 분석한 강아지상·고양이상 확률과 함께 어울리는 인상을 알려드려요.</li>
+                <li><strong>여러 장 시도:</strong> 각도나 표정에 따라 결과가 달라질 수 있으니, 여러 사진으로 즐겨보세요.</li>
+            </ol>
+            <div class="disclaimer">
+                ⚠️ 본 테스트는 오락 목적으로 제공되며, 의학적·심리학적 진단이나 외모 평가의 도구가 아닙니다. 결과는 가볍게 즐겨주세요.
+            </div>
+        </section>
+
+        <section>
+            <h2>자주 묻는 질문</h2>
+            <details class="faq-item">
+                <summary>업로드한 사진은 서버에 저장되나요?</summary>
+                <p>아니요. 모든 분석은 사용자의 브라우저 안에서만 진행되며, 사진은 어떤 서버에도 전송되거나 저장되지 않습니다. 페이지를 닫으면 모든 데이터가 사라져요. 자세한 내용은 <a href="./privacy.html">개인정보처리방침</a>에서 확인하실 수 있습니다.</p>
+            </details>
+            <details class="faq-item">
+                <summary>결과가 매번 똑같지 않은 이유는?</summary>
+                <p>AI 모델은 사진의 픽셀 정보를 학습된 패턴과 비교해 확률을 계산해요. 그래서 표정·각도·조명이 조금만 달라져도 결과가 살짝 바뀔 수 있습니다. 같은 사람이라도 사진에 따라 강아지상과 고양이상 확률이 달라질 수 있어요.</p>
+            </details>
+            <details class="faq-item">
+                <summary>웹캠이 작동하지 않아요</summary>
+                <p>웹캠 사용에는 브라우저 권한 허용이 필요해요. 주소창 옆 카메라 아이콘을 눌러 권한을 확인하시고, https로 접속한 페이지에서만 동작합니다. 또한 다른 앱이 카메라를 점유하고 있다면 종료한 뒤 다시 시도해보세요.</p>
+            </details>
+            <details class="faq-item">
+                <summary>모바일에서도 사용할 수 있나요?</summary>
+                <p>네, 모바일 브라우저에서도 동일하게 동작해요. 갤러리에서 사진을 선택하거나 카메라로 즉시 촬영해서 업로드할 수 있습니다.</p>
+            </details>
+            <details class="faq-item">
+                <summary>강아지·고양이 외 다른 동물상은 없나요?</summary>
+                <p>현재 모델은 강아지상과 고양이상 두 가지만 학습되어 있어요. 추후 곰상, 여우상, 토끼상 등으로 확장될 수 있도록 데이터를 보완할 계획입니다.</p>
+            </details>
+            <details class="faq-item">
+                <summary>제 결과를 어떻게 해석하면 되나요?</summary>
+                <p>예를 들어 강아지상 70% / 고양이상 30%라면 강아지상 인상이 우세하지만 고양이상의 매력도 일부 가지고 있다는 의미예요. 두 비율이 비슷하면 두 인상이 모두 어울리는 매력적인 얼굴이라는 뜻입니다.</p>
+            </details>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-wrapper">
+            <div>© 2026 동물상 테스트. 모든 권리 보유.</div>
+            <ul class="footer-links">
+                <li><a href="./about.html">소개</a></li>
+                <li><a href="./guide.html">동물상 가이드</a></li>
+                <li><a href="./privacy.html">개인정보처리방침</a></li>
+                <li><a href="./terms.html">이용약관</a></li>
+            </ul>
         </div>
-    </div>
+    </footer>
+
     <script src="main.js"></script>
 </body>
 </html>
