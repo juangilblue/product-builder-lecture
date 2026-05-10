@@ -1,30 +1,61 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lotto Number Generator</title>
+    <title>동물상 테스트 - 강아지상 vs 고양이상</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
 </head>
 <body>
     <div class="container">
         <button id="theme-toggle" aria-label="Toggle Dark Mode">🌓</button>
-        <h1>Lotto Number Generator</h1>
-        <div id="lotto-numbers" class="lotto-numbers-container"></div>
-        <button id="generate-btn">Generate Numbers</button>
+        <h1>🐶 동물상 테스트 🐱</h1>
+        <p class="subtitle">사진을 업로드하면 강아지상인지 고양이상인지 알려드려요!</p>
+
+        <div id="loading" class="loading">모델을 불러오는 중...</div>
+
+        <div id="main-content" class="hidden">
+            <div class="mode-buttons">
+                <button id="upload-mode-btn" class="mode-btn active">📷 사진 업로드</button>
+                <button id="webcam-mode-btn" class="mode-btn">🎥 웹캠</button>
+            </div>
+
+            <div id="upload-section" class="input-section">
+                <label for="file-input" class="upload-area" id="upload-area">
+                    <div class="upload-placeholder">
+                        <div class="upload-icon">📁</div>
+                        <p>클릭하거나 사진을 끌어다 놓으세요</p>
+                        <p class="upload-hint">JPG, PNG 지원</p>
+                    </div>
+                    <img id="preview-img" class="hidden" alt="preview">
+                </label>
+                <input type="file" id="file-input" accept="image/*" hidden>
+            </div>
+
+            <div id="webcam-section" class="input-section hidden">
+                <div id="webcam-container"></div>
+                <button id="webcam-toggle-btn" class="action-btn">웹캠 시작</button>
+            </div>
+
+            <div id="result-section" class="result-section hidden">
+                <h2 id="verdict"></h2>
+                <div id="result-bars" class="result-bars"></div>
+            </div>
+        </div>
 
         <div class="contact-section">
             <hr>
-            <h3>Partnership Inquiry</h3>
+            <h3>제휴 문의</h3>
             <form action="https://formspree.io/f/mjglpopp" method="POST" id="contact-form">
                 <div class="form-group">
-                    <input type="email" name="email" placeholder="Your Email Address" required>
+                    <input type="email" name="email" placeholder="이메일 주소" required>
                 </div>
                 <div class="form-group">
-                    <textarea name="message" placeholder="Your Message" required></textarea>
+                    <textarea name="message" placeholder="문의 내용" required></textarea>
                 </div>
-                <button type="submit" id="submit-btn">Send Inquiry</button>
+                <button type="submit" id="submit-btn">보내기</button>
             </form>
         </div>
     </div>
