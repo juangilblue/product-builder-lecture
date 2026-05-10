@@ -1,4 +1,24 @@
 
+:root {
+    --bg-color: oklch(95.59% .042 250.39);
+    --bg-gradient: radial-gradient(circle, oklch(98.59% .042 250.39) 0%, oklch(90.59% .042 250.39) 100%);
+    --container-bg: oklch(99.59% .002 250.39 / .5);
+    --text-color: oklch(40% .24 278);
+    --btn-bg: oklch(65% .24 278);
+    --shadow-color: oklch(0% 0 0 / .1);
+    --border-color: oklch(99.59% .002 250.39 / .2);
+}
+
+body.dark-mode {
+    --bg-color: oklch(20% .04 250);
+    --bg-gradient: radial-gradient(circle, oklch(25% .04 250) 0%, oklch(15% .04 250) 100%);
+    --container-bg: oklch(30% .04 250 / .5);
+    --text-color: oklch(90% .04 250);
+    --btn-bg: oklch(50% .2 250);
+    --shadow-color: oklch(0% 0 0 / .5);
+    --border-color: oklch(40% .04 250 / .2);
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -11,25 +31,29 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: oklch(95.59% .042 250.39);
-    background-image: radial-gradient(circle, oklch(98.59% .042 250.39) 0%, oklch(90.59% .042 250.39) 100%);
+    background-color: var(--bg-color);
+    background-image: var(--bg-gradient);
+    transition: background-color 0.3s ease, background-image 0.3s ease;
 }
 
 .container {
     text-align: center;
     padding: 2rem;
-    background-color: oklch(99.59% .002 250.39 / .5);
+    background-color: var(--container-bg);
     border-radius: 15px;
-    box-shadow: 0 10px 30px oklch(0% 0 0 / .1);
+    box-shadow: 0 10px 30px var(--shadow-color);
     backdrop-filter: blur(10px);
-    border: 1px solid oklch(99.59% .002 250.39 / .2);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    position: relative;
 }
 
 h1 {
     font-size: 2.5rem;
     margin-bottom: 2rem;
-    color: oklch(40% .24 278);
-    text-shadow: 0 2px 5px oklch(0% 0 0 / .1);
+    color: var(--text-color);
+    text-shadow: 0 2px 5px var(--shadow-color);
+    transition: color 0.3s ease;
 }
 
 .lotto-numbers-container {
@@ -44,24 +68,37 @@ h1 {
     padding: 1rem 2rem;
     font-size: 1.2rem;
     color: white;
-    background-color: oklch(65% .24 278);
+    background-color: var(--btn-bg);
     border: none;
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 5px 15px oklch(65% .24 278 / .4);
+    box-shadow: 0 5px 15px var(--shadow-color);
 }
 
 #generate-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px oklch(65% .24 278 / .6);
+    opacity: 0.9;
 }
 
 #generate-btn:active {
     transform: translateY(0);
-    box-shadow: 0 5px 15px oklch(65% .24 278 / .4);
 }
 
-lotto-ball {
-    --ball-color: oklch(70% .24 30);
+#theme-toggle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: background 0.3s ease;
 }
+
+#theme-toggle:hover {
+    background: var(--border-color);
+}
+
