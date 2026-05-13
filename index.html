@@ -107,10 +107,20 @@
 
                 <div id="webcam-section" class="input-section hidden">
                     <div id="webcam-container"></div>
-                    <button id="webcam-toggle-btn" class="action-btn">
-                        <span data-lang="ko">웹캠 시작</span>
-                        <span data-lang="en">Start Webcam</span>
-                    </button>
+                    <div class="webcam-buttons">
+                        <button id="webcam-toggle-btn" class="action-btn">
+                            <span data-lang="ko">웹캠 시작</span>
+                            <span data-lang="en">Start Webcam</span>
+                        </button>
+                        <button id="webcam-capture-btn" class="action-btn hidden">
+                            <span data-lang="ko">📸 사진 찍기</span>
+                            <span data-lang="en">📸 Take Photo</span>
+                        </button>
+                        <button id="webcam-retake-btn" class="action-btn hidden">
+                            <span data-lang="ko">🔄 다시 찍기</span>
+                            <span data-lang="en">🔄 Retake</span>
+                        </button>
+                    </div>
                 </div>
 
                 <div id="result-section" class="result-section hidden" aria-live="polite">

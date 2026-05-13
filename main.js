@@ -46,6 +46,8 @@ const uploadArea = document.getElementById("upload-area");
 const previewImg = document.getElementById("preview-img");
 const webcamContainer = document.getElementById("webcam-container");
 const webcamToggleBtn = document.getElementById("webcam-toggle-btn");
+const webcamCaptureBtn = document.getElementById("webcam-capture-btn");
+const webcamRetakeBtn = document.getElementById("webcam-retake-btn");
 const resultSection = document.getElementById("result-section");
 const verdictEl = document.getElementById("verdict");
 const resultBarsEl = document.getElementById("result-bars");
@@ -62,9 +64,9 @@ async function init() {
   document.addEventListener("langchange", () => {
     if (lastPredictions) showResult(lastPredictions);
     if (webcam) {
-      webcamToggleBtn.textContent = TEXT.webcamStop[lang()];
+      setWebcamUI(webcamLoopId ? "live" : "captured");
     } else {
-      webcamToggleBtn.textContent = TEXT.webcamStart[lang()];
+      setWebcamUI("idle");
     }
   });
 }
@@ -104,12 +106,40 @@ function bindEvents() {
   webcamToggleBtn.addEventListener("click", async () => {
     if (webcam) {
       stopWebcam();
-      webcamToggleBtn.textContent = TEXT.webcamStart[lang()];
+      setWebcamUI("idle");
     } else {
       await startWebcam();
-      webcamToggleBtn.textContent = TEXT.webcamStop[lang()];
+      setWebcamUI("live");
     }
   });
+
+  webcamCaptureBtn.addEventListener("click", () => {
+    captureAndPredict();
+  });
+
+  webcamRetakeBtn.addEventListener("click", () => {
+    resumeWebcamPreview();
+  });
+}
+
+function setWebcamUI(state) {
+  const L = lang();
+  if (state === "idle") {
+    webcamToggleBtn.classList.remove("hidden");
+    webcamToggleBtn.textContent = TEXT.webcamStart[L];
+    webcamCaptureBtn.classList.add("hidden");
+    webcamRetakeBtn.classList.add("hidden");
+  } else if (state === "live") {
+    webcamToggleBtn.classList.remove("hidden");
+    webcamToggleBtn.textContent = TEXT.webcamStop[L];
+    webcamCaptureBtn.classList.remove("hidden");
+    webcamRetakeBtn.classList.add("hidden");
+  } else if (state === "captured") {
+    webcamToggleBtn.classList.remove("hidden");
+    webcamToggleBtn.textContent = TEXT.webcamStop[L];
+    webcamCaptureBtn.classList.add("hidden");
+    webcamRetakeBtn.classList.remove("hidden");
+  }
 }
 
 function switchMode(mode) {
@@ -119,7 +149,7 @@ function switchMode(mode) {
     uploadSection.classList.remove("hidden");
     webcamSection.classList.add("hidden");
     stopWebcam();
-    webcamToggleBtn.textContent = TEXT.webcamStart[lang()];
+    setWebcamUI("idle");
   } else {
     webcamModeBtn.classList.add("active");
     uploadModeBtn.classList.remove("active");
@@ -156,6 +186,8 @@ async function startWebcam() {
     webcamContainer.innerHTML = "";
     webcamContainer.appendChild(webcam.canvas);
     webcamLoop();
+    resultSection.classList.add("hidden");
+    lastPredictions = null;
   } catch (err) {
     alert(TEXT.webcamError[lang()]);
     console.error(err);
@@ -174,11 +206,34 @@ function stopWebcam() {
   webcamContainer.innerHTML = "";
 }
 
-async function webcamLoop() {
+function webcamLoop() {
+  if (!webcam) return;
   webcam.update();
-  const predictions = await model.predict(webcam.canvas);
-  showResult(predictions);
   webcamLoopId = requestAnimationFrame(webcamLoop);
+}
+
+async function captureAndPredict() {
+  if (!webcam || !model) return;
+  if (webcamLoopId) {
+    cancelAnimationFrame(webcamLoopId);
+    webcamLoopId = null;
+  }
+  webcam.update();
+  const snapshot = document.createElement("canvas");
+  snapshot.width = webcam.canvas.width;
+  snapshot.height = webcam.canvas.height;
+  snapshot.getContext("2d").drawImage(webcam.canvas, 0, 0);
+  const predictions = await model.predict(snapshot);
+  showResult(predictions);
+  setWebcamUI("captured");
+}
+
+function resumeWebcamPreview() {
+  if (!webcam) return;
+  resultSection.classList.add("hidden");
+  lastPredictions = null;
+  if (!webcamLoopId) webcamLoop();
+  setWebcamUI("live");
 }
 
 function showResult(predictions) {

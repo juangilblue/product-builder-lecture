@@ -338,6 +338,14 @@ li { margin-bottom: 0.4rem; }
 
 #webcam-section { text-align: center; }
 
+.webcam-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-top: 1rem;
+}
+
 .action-btn {
     padding: 0.75rem 1.4rem;
     font-size: 1rem;
