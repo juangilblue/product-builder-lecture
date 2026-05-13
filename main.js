@@ -25,9 +25,9 @@ const CLASS_META = {
 
 const TEXT = {
   loadFail: { ko: "모델을 불러오지 못했어요. 새로고침해주세요.", en: "Failed to load the model. Please refresh." },
-  webcamStart: { ko: "웹캠 시작", en: "Start Webcam" },
-  webcamStop: { ko: "웹캠 종료", en: "Stop Webcam" },
-  webcamError: { ko: "웹캠을 사용할 수 없어요. 브라우저 권한을 확인해주세요.", en: "Cannot access the webcam. Please check browser permissions." },
+  webcamStart: { ko: "카메라 시작", en: "Start Camera" },
+  webcamStop: { ko: "카메라 종료", en: "Stop Camera" },
+  webcamError: { ko: "카메라를 사용할 수 없어요. 브라우저 권한을 확인해주세요.", en: "Cannot access the camera. Please check browser permissions." },
   shareTitle: { ko: "동물상 테스트", en: "Animal Face Test" },
   shareDog: { ko: "강아지상", en: "Dog Face" },
   shareCat: { ko: "고양이상", en: "Cat Face" },
