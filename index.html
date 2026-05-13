@@ -126,6 +126,30 @@
                 <div id="result-section" class="result-section hidden" aria-live="polite">
                     <h2 id="verdict"></h2>
                     <div id="result-bars" class="result-bars"></div>
+                    <div class="share-section">
+                        <p class="share-title">
+                            <span data-lang="ko">결과 공유하기</span>
+                            <span data-lang="en">Share your result</span>
+                        </p>
+                        <div class="share-buttons">
+                            <button class="share-btn" data-share="native" aria-label="Share">
+                                📤 <span data-lang="ko">공유하기</span><span data-lang="en">Share</span>
+                            </button>
+                            <button class="share-btn share-twitter" data-share="twitter" aria-label="Share on Twitter">
+                                🐦 <span>X</span>
+                            </button>
+                            <button class="share-btn share-facebook" data-share="facebook" aria-label="Share on Facebook">
+                                📘 <span>Facebook</span>
+                            </button>
+                            <button class="share-btn" data-share="copy" aria-label="Copy link">
+                                🔗 <span data-lang="ko">링크 복사</span><span data-lang="en">Copy Link</span>
+                            </button>
+                            <button class="share-btn" data-share="save" aria-label="Save image">
+                                💾 <span data-lang="ko">이미지 저장</span><span data-lang="en">Save Image</span>
+                            </button>
+                        </div>
+                        <div id="share-toast" class="share-toast hidden" role="status"></div>
+                    </div>
                 </div>
             </div>
         </section>
