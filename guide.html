@@ -4,38 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>동물상 가이드 - 강아지상·고양이상 특징과 매력 포인트</title>
+    <meta name="title-ko" content="동물상 가이드 - 강아지상·고양이상 특징과 매력 포인트">
+    <meta name="title-en" content="Animal Face Guide - Dog & Cat Face Features and Style Tips">
     <meta name="description" content="강아지상과 고양이상의 얼굴 특징, 인상, 어울리는 헤어·메이크업·패션 스타일까지. 동물상별 매력을 살리는 방법을 자세히 알아보세요.">
-    <meta name="keywords" content="동물상 가이드, 강아지상 특징, 고양이상 특징, 강아지상 메이크업, 고양이상 헤어">
+    <meta name="keywords" content="동물상 가이드, 강아지상 특징, 고양이상 특징, dog face style, cat face style">
     <meta property="og:title" content="동물상 가이드 - 강아지상·고양이상 특징과 매력 포인트">
     <meta property="og:description" content="강아지상과 고양이상의 얼굴 특징과 매력을 자세히 알아보는 가이드.">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="ko_KR">
+    <meta property="og:locale:alternate" content="en_US">
     <link rel="canonical" href="https://juangilblue.github.io/product-builder-lecture/guide.html">
     <meta name="google-adsense-account" content="ca-pub-4924318808009309">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q1BQ98D4QX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-Q1BQ98D4QX');
+    </script>
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🐶%3C/text%3E%3C/svg%3E">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4924318808009309"
          crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
     <script src="theme.js"></script>
+    <script src="i18n.js"></script>
 </head>
 <body>
     <header class="site-header">
         <div class="nav-wrapper">
-            <a href="./" class="brand">🐶 동물상 테스트 🐱</a>
+            <a href="./" class="brand">🐶 <span data-lang="ko">동물상 테스트</span><span data-lang="en">Animal Face Test</span> 🐱</a>
             <ul class="nav-links">
-                <li><a href="./">테스트</a></li>
-                <li><a href="./guide.html" class="active">동물상 가이드</a></li>
-                <li><a href="./about.html">소개</a></li>
+                <li><a href="./"><span data-lang="ko">테스트</span><span data-lang="en">Test</span></a></li>
+                <li><a href="./guide.html" class="active"><span data-lang="ko">동물상 가이드</span><span data-lang="en">Guide</span></a></li>
+                <li><a href="./about.html"><span data-lang="ko">소개</span><span data-lang="en">About</span></a></li>
             </ul>
-            <button id="theme-toggle" aria-label="다크 모드 전환">🌓</button>
+            <div class="header-tools">
+                <div class="lang-toggle" role="group" aria-label="Language">
+                    <button class="lang-btn" data-lang-set="ko">한</button>
+                    <button class="lang-btn" data-lang-set="en">EN</button>
+                </div>
+                <button id="theme-toggle"
+                    aria-label="다크 모드 전환"
+                    data-ko-aria-label="다크 모드 전환"
+                    data-en-aria-label="Toggle dark mode">🌓</button>
+            </div>
         </div>
     </header>
 
     <main>
-        <h1 class="page-title">동물상 가이드</h1>
-        <p class="page-lead">강아지상과 고양이상은 단순히 외모를 분류하는 기준이 아니라, 첫인상이 풍기는 분위기를 표현하는 방식이에요. 각 인상이 가진 매력 포인트와, 그 매력을 더 돋보이게 만드는 방법을 정리했습니다.</p>
+        <h1 class="page-title" data-lang="ko">동물상 가이드</h1>
+        <h1 class="page-title" data-lang="en">Animal Face Guide</h1>
+        <p class="page-lead" data-lang="ko">강아지상과 고양이상은 단순히 외모를 분류하는 기준이 아니라, 첫인상이 풍기는 분위기를 표현하는 방식이에요. 각 인상이 가진 매력 포인트와, 그 매력을 더 돋보이게 만드는 방법을 정리했습니다.</p>
+        <p class="page-lead" data-lang="en">Dog-face and cat-face aren't strict appearance categories — they describe the vibe a face gives off at first glance. This page breaks down the strengths of each impression and how to bring them out.</p>
 
-        <section>
+        <section data-lang="ko">
             <h2>🐶 강아지상 — 친근하고 다정한 인상</h2>
             <p>강아지상은 보는 사람을 편안하게 만들어주는 인상이에요. 처음 만난 자리에서도 어색함이 빨리 풀리고, 무리 안에서 분위기를 부드럽게 만드는 역할을 자주 맡곤 합니다. 영상이나 사진을 찍을 때 잘 웃는 표정이 잘 어울리고, 활기찬 분위기 연출에 강해요.</p>
 
@@ -60,7 +84,32 @@
             </ul>
         </section>
 
-        <section>
+        <section data-lang="en">
+            <h2>🐶 Dog Face — A Warm, Approachable Look</h2>
+            <p>The dog-face vibe puts people at ease. Conversations start easily even with strangers, and dog-face folks often play the role of softening the mood in a group. They photograph beautifully when smiling and are great at projecting bright, energetic moments.</p>
+
+            <h3>Common Facial Features</h3>
+            <ul class="feature-list">
+                <li><strong>Rounded eyes:</strong> Large, round pupils give a curious and gentle impression.</li>
+                <li><strong>Short nose:</strong> A round nose tip adds a cute touch.</li>
+                <li><strong>Plump cheeks:</strong> Soft cheek volume rises when smiling.</li>
+                <li><strong>Mouth corners:</strong> A slight upward lift even at rest gives off friendliness.</li>
+                <li><strong>Face shape:</strong> Round or slightly short oval shapes are typical.</li>
+            </ul>
+
+            <h3>The Vibe You Project</h3>
+            <p>Dog-face people read as "easy to approach." They feel like someone who smiles at everyone, which helps them make friends quickly and fit into teams smoothly. In customer-facing roles like sales, service, or teaching, this impression naturally builds likability.</p>
+
+            <h3>Styling That Brings Out the Charm</h3>
+            <ul>
+                <li><strong>Hair:</strong> See-through bangs, side-swept wisps, and soft waves — light and voluminous styles suit you.</li>
+                <li><strong>Makeup:</strong> Coral and apricot tones, fuller lip looks, and aegyo-sal under-eye shading enhance your impression.</li>
+                <li><strong>Fashion:</strong> Pastels, round necklines, and soft fabrics like knits or cardigans match the gentle vibe.</li>
+                <li><strong>Accessories:</strong> Round pearl earrings and dainty necklaces work well.</li>
+            </ul>
+        </section>
+
+        <section data-lang="ko">
             <h2>🐱 고양이상 — 도도하고 시크한 인상</h2>
             <p>고양이상은 깊은 인상과 또렷한 이목구비로 시선을 끄는 매력이 있어요. 정적인 분위기에서도 존재감이 또렷하고, 무표정일 때조차 멋스러운 분위기를 자아냅니다. 화보나 무드 있는 사진에서 특히 빛나는 인상이에요.</p>
 
@@ -85,13 +134,43 @@
             </ul>
         </section>
 
-        <section>
+        <section data-lang="en">
+            <h2>🐱 Cat Face — Aloof and Chic</h2>
+            <p>The cat-face vibe pulls attention through striking, well-defined features. There's a quiet but distinct presence even at rest, and a cool atmosphere even with a neutral expression. It shines in editorial photography and moody portraits.</p>
+
+            <h3>Common Facial Features</h3>
+            <ul class="feature-list">
+                <li><strong>Upturned eyes:</strong> Outer eye corners that lift slightly create a chic vibe.</li>
+                <li><strong>Sharp nose bridge:</strong> A clean, straight bridge gives the profile dimension.</li>
+                <li><strong>Narrow jawline:</strong> A V-line jaw makes the face look smaller and refined.</li>
+                <li><strong>Thin lips:</strong> A clean lip line adds polish.</li>
+                <li><strong>Face shape:</strong> Long, slender shapes are typical.</li>
+            </ul>
+
+            <h3>The Vibe You Project</h3>
+            <p>Cat-face people read as "hard to approach at first, but charming once you know them." The reserved exterior turns into reverse charm when warmth peeks through. This impression leaves a strong mark in fields like modeling, art, and content creation, where atmosphere is part of self-expression.</p>
+
+            <h3>Styling That Brings Out the Charm</h3>
+            <ul>
+                <li><strong>Hair:</strong> Side parts, shoulder-length cuts, and straight bangs — clean, structured styles suit you.</li>
+                <li><strong>Makeup:</strong> Cool wines, plums, and nude tones, plus a slightly cat-eyed liner, sharpen your features.</li>
+                <li><strong>Fashion:</strong> Black, navy, and charcoal tones with crisp silhouettes like shirts or blazers reinforce the chic vibe.</li>
+                <li><strong>Accessories:</strong> Long, slim earrings and minimal chain necklaces keep things clean.</li>
+            </ul>
+        </section>
+
+        <section data-lang="ko">
             <h2>두 인상이 모두 어울리는 사람도 있어요</h2>
             <p>실제로는 한 사람의 얼굴 안에 두 인상이 함께 담겨 있는 경우가 많아요. 표정이 환할 때는 강아지상이 두드러지고, 차분히 정면을 응시할 때는 고양이상이 또렷해지는 식이에요. 이런 ‘반전 매력’ 덕분에 사진과 영상에서 다양한 분위기를 연출할 수 있어요.</p>
             <p>테스트 결과에서 두 인상의 비율이 비슷하게 나왔다면, 어느 한쪽으로 치우치지 않은 균형 잡힌 인상을 가지고 있다는 신호로 해석할 수 있어요. 상황에 따라 메이크업이나 헤어 스타일을 살짝 바꿔주는 것만으로도 두 매력을 자유롭게 연출할 수 있답니다.</p>
         </section>
+        <section data-lang="en">
+            <h2>Some Faces Carry Both Vibes</h2>
+            <p>Many people actually hold both impressions in a single face. A bright smile leans dog, a calm forward gaze leans cat. This "reverse charm" lets you flex very different moods in photos and videos.</p>
+            <p>If your test result is balanced, you have a face that doesn't lean too far either way. With small tweaks in makeup or hair, you can switch between both impressions depending on the situation.</p>
+        </section>
 
-        <section>
+        <section data-lang="ko">
             <h2>나에게 맞는 인상을 찾는 팁</h2>
             <ol>
                 <li><strong>여러 사진으로 비교하기:</strong> 정면, 살짝 옆모습, 웃는 표정과 무표정 사진을 각각 분석해보세요. 표정에 따라 인상이 어떻게 달라지는지 한눈에 보입니다.</li>
@@ -100,20 +179,35 @@
                 <li><strong>참고 자료로 활용:</strong> 이 가이드는 어디까지나 참고용이에요. 가장 잘 어울리는 스타일은 결국 본인이 가장 편안하게 느끼는 모습입니다.</li>
             </ol>
         </section>
+        <section data-lang="en">
+            <h2>Tips for Finding the Right Vibe</h2>
+            <ol>
+                <li><strong>Compare multiple photos:</strong> Analyze front, side, smiling, and neutral shots. You'll see how your vibe shifts with expression.</li>
+                <li><strong>Cross-check with friends:</strong> Compare the AI result with how friends and family read your impression. You may discover charm you didn't notice yourself.</li>
+                <li><strong>Experiment with styling:</strong> Try the recommended look once and see if it suits you.</li>
+                <li><strong>Use it as a reference:</strong> This guide is just a starting point. The best style is always whatever feels most like you.</li>
+            </ol>
+        </section>
 
         <p style="text-align: center; margin-top: 2rem;">
-            <a href="./" class="action-btn" style="display: inline-block;">테스트 하러 가기 →</a>
+            <a href="./" class="action-btn" style="display: inline-block;">
+                <span data-lang="ko">테스트 하러 가기 →</span>
+                <span data-lang="en">Take the Test →</span>
+            </a>
         </p>
     </main>
 
     <footer class="site-footer">
         <div class="footer-wrapper">
-            <div>© 2026 동물상 테스트. 모든 권리 보유.</div>
+            <div>
+                <span data-lang="ko">© 2026 동물상 테스트. 모든 권리 보유.</span>
+                <span data-lang="en">© 2026 Animal Face Test. All rights reserved.</span>
+            </div>
             <ul class="footer-links">
-                <li><a href="./about.html">소개</a></li>
-                <li><a href="./guide.html">동물상 가이드</a></li>
-                <li><a href="./privacy.html">개인정보처리방침</a></li>
-                <li><a href="./terms.html">이용약관</a></li>
+                <li><a href="./about.html"><span data-lang="ko">소개</span><span data-lang="en">About</span></a></li>
+                <li><a href="./guide.html"><span data-lang="ko">동물상 가이드</span><span data-lang="en">Guide</span></a></li>
+                <li><a href="./privacy.html"><span data-lang="ko">개인정보처리방침</span><span data-lang="en">Privacy Policy</span></a></li>
+                <li><a href="./terms.html"><span data-lang="ko">이용약관</span><span data-lang="en">Terms of Service</span></a></li>
             </ul>
         </div>
     </footer>

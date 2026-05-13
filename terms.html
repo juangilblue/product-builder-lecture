@@ -4,40 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>이용약관 - 동물상 테스트</title>
+    <meta name="title-ko" content="이용약관 - 동물상 테스트">
+    <meta name="title-en" content="Terms of Service - Animal Face Test">
     <meta name="description" content="동물상 테스트 사이트의 이용약관. 서비스 목적, 사용자 책임, 면책조항 등을 안내합니다.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://juangilblue.github.io/product-builder-lecture/terms.html">
     <meta name="google-adsense-account" content="ca-pub-4924318808009309">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q1BQ98D4QX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-Q1BQ98D4QX');
+    </script>
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🐶%3C/text%3E%3C/svg%3E">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4924318808009309"
          crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
     <script src="theme.js"></script>
+    <script src="i18n.js"></script>
 </head>
 <body>
     <header class="site-header">
         <div class="nav-wrapper">
-            <a href="./" class="brand">🐶 동물상 테스트 🐱</a>
+            <a href="./" class="brand">🐶 <span data-lang="ko">동물상 테스트</span><span data-lang="en">Animal Face Test</span> 🐱</a>
             <ul class="nav-links">
-                <li><a href="./">테스트</a></li>
-                <li><a href="./guide.html">동물상 가이드</a></li>
-                <li><a href="./about.html">소개</a></li>
+                <li><a href="./"><span data-lang="ko">테스트</span><span data-lang="en">Test</span></a></li>
+                <li><a href="./guide.html"><span data-lang="ko">동물상 가이드</span><span data-lang="en">Guide</span></a></li>
+                <li><a href="./about.html"><span data-lang="ko">소개</span><span data-lang="en">About</span></a></li>
             </ul>
-            <button id="theme-toggle" aria-label="다크 모드 전환">🌓</button>
+            <div class="header-tools">
+                <div class="lang-toggle" role="group" aria-label="Language">
+                    <button class="lang-btn" data-lang-set="ko">한</button>
+                    <button class="lang-btn" data-lang-set="en">EN</button>
+                </div>
+                <button id="theme-toggle"
+                    aria-label="다크 모드 전환"
+                    data-ko-aria-label="다크 모드 전환"
+                    data-en-aria-label="Toggle dark mode">🌓</button>
+            </div>
         </div>
     </header>
 
     <main>
-        <h1 class="page-title">이용약관</h1>
-        <p class="page-lead">본 이용약관은 동물상 테스트 사이트(이하 ‘서비스’)를 이용하실 때 적용되는 조건과 양 당사자의 책임을 안내합니다. 서비스를 이용하시는 것은 본 약관에 동의하시는 것으로 간주됩니다.</p>
-        <p><strong>최종 수정일:</strong> 2026년 5월 10일</p>
+        <h1 class="page-title" data-lang="ko">이용약관</h1>
+        <h1 class="page-title" data-lang="en">Terms of Service</h1>
+        <p class="page-lead" data-lang="ko">본 이용약관은 동물상 테스트 사이트(이하 ‘서비스’)를 이용하실 때 적용되는 조건과 양 당사자의 책임을 안내합니다. 서비스를 이용하시는 것은 본 약관에 동의하시는 것으로 간주됩니다.</p>
+        <p class="page-lead" data-lang="en">These Terms outline the conditions for using the Animal Face Test site (the "Service") and the responsibilities of both parties. By using the Service, you agree to these Terms.</p>
+        <p>
+            <span data-lang="ko"><strong>최종 수정일:</strong> 2026년 5월 10일</span>
+            <span data-lang="en"><strong>Last updated:</strong> May 10, 2026</span>
+        </p>
 
-        <section class="card">
+        <section class="card" data-lang="ko">
             <h2>제1조 (목적)</h2>
             <p>본 약관은 동물상 테스트가 제공하는 AI 기반 인상 분석 콘텐츠 및 부가 서비스 이용과 관련해, 서비스와 이용자 간의 권리·의무·책임 사항을 정함을 목적으로 합니다.</p>
         </section>
+        <section class="card" data-lang="en">
+            <h2>Article 1 (Purpose)</h2>
+            <p>These Terms set forth the rights, duties, and responsibilities between the Service and its users in relation to the AI-powered face impression analysis and related features provided by Animal Face Test.</p>
+        </section>
 
-        <section class="card">
+        <section class="card" data-lang="ko">
             <h2>제2조 (용어 정의)</h2>
             <ul>
                 <li><strong>서비스:</strong> 본 사이트에서 제공하는 동물상 테스트, 동물상 가이드, 문의 양식 등 모든 콘텐츠와 기능을 의미합니다.</li>
@@ -45,8 +75,16 @@
                 <li><strong>콘텐츠:</strong> 서비스에 게시된 글, 이미지, 코드, 디자인 등 일체의 자료를 의미합니다.</li>
             </ul>
         </section>
+        <section class="card" data-lang="en">
+            <h2>Article 2 (Definitions)</h2>
+            <ul>
+                <li><strong>Service:</strong> All content and features offered on this Site, including the test, guide, and contact form.</li>
+                <li><strong>User:</strong> Any person who accesses the Site and uses its content.</li>
+                <li><strong>Content:</strong> All materials published on the Service, including text, images, code, and design.</li>
+            </ul>
+        </section>
 
-        <section class="card">
+        <section class="card" data-lang="ko">
             <h2>제3조 (서비스의 제공)</h2>
             <p>서비스는 누구나 별도의 가입 없이 무료로 이용하실 수 있습니다. 다음과 같은 기능을 포함합니다.</p>
             <ul>
@@ -56,8 +94,18 @@
             </ul>
             <p>서비스 운영자는 서비스 품질 향상을 위해 콘텐츠와 기능을 변경하거나 일부 기능을 추가·중단할 수 있으며, 중대한 변경 시 사이트 내에 미리 안내합니다.</p>
         </section>
+        <section class="card" data-lang="en">
+            <h2>Article 3 (Service Description)</h2>
+            <p>The Service is free and available to anyone without sign-up. It includes:</p>
+            <ul>
+                <li>Animal-face analysis via image upload or webcam</li>
+                <li>Style and feature guides for each impression</li>
+                <li>A contact form for feedback</li>
+            </ul>
+            <p>The Service operator may change content, add features, or pause features to improve quality. Major changes will be announced through the Site in advance.</p>
+        </section>
 
-        <section class="card">
+        <section class="card" data-lang="ko">
             <h2>제4조 (이용자의 책임)</h2>
             <p>이용자는 다음 사항을 준수해야 합니다.</p>
             <ul>
@@ -68,8 +116,19 @@
                 <li>서비스 결과를 외모 평가·차별 등 타인에게 해를 끼치는 용도로 사용하지 않을 것</li>
             </ul>
         </section>
+        <section class="card" data-lang="en">
+            <h2>Article 4 (User Responsibilities)</h2>
+            <p>Users must:</p>
+            <ul>
+                <li>Not upload another person's photo without their consent</li>
+                <li>Not use obscene, violent, or hateful images that are inappropriate by general social standards</li>
+                <li>Not use automation to place undue load on the Service</li>
+                <li>Not copy or distribute the Service's code, design, or content without permission</li>
+                <li>Not use results to demean others, including for appearance-based judgment or discrimination</li>
+            </ul>
+        </section>
 
-        <section class="card">
+        <section class="card" data-lang="ko">
             <h2>제5조 (면책 조항)</h2>
             <p>서비스는 <strong>오락 및 학습 목적</strong>으로 제공되며 다음 사항을 사전에 안내드립니다.</p>
             <ul>
@@ -80,42 +139,77 @@
                 <li>천재지변, 시스템 장애, 제3자 서비스의 오류 등으로 인한 서비스 중단에 대해 책임을 지지 않습니다.</li>
             </ul>
         </section>
+        <section class="card" data-lang="en">
+            <h2>Article 5 (Disclaimer)</h2>
+            <p>The Service is provided for <strong>entertainment and learning purposes</strong>. Please note:</p>
+            <ul>
+                <li>The result is not a tool to assess or diagnose your appearance, personality, or abilities.</li>
+                <li>It cannot be used for medical, psychological, or physiognomic judgment.</li>
+                <li>Due to the nature of the model, results may change with angle, lighting, or expression for the same photo.</li>
+                <li>The Service operator does not guarantee accuracy and is not liable for direct or indirect damages arising from use of the result.</li>
+                <li>The operator is not liable for service interruptions caused by force majeure, system failures, or third-party service errors.</li>
+            </ul>
+        </section>
 
-        <section class="card">
+        <section class="card" data-lang="ko">
             <h2>제6조 (지적재산권)</h2>
             <p>서비스에 게재된 모든 콘텐츠(글, 디자인, 코드 등)에 대한 저작권은 서비스 운영자 또는 정당한 권리자에게 있습니다. 학술·비영리 인용을 제외하고는 사전 동의 없이 복제·배포·2차 가공할 수 없습니다.</p>
             <p>제3자 라이브러리(TensorFlow.js, Teachable Machine 등)는 각 라이선스(예: Apache 2.0)에 따라 이용되며, 해당 라이선스의 조건이 우선 적용됩니다.</p>
         </section>
+        <section class="card" data-lang="en">
+            <h2>Article 6 (Intellectual Property)</h2>
+            <p>Copyright in all content on the Service (text, design, code, etc.) belongs to the Service operator or the rightful holder. Except for academic or non-commercial citations, no copying, distribution, or derivative works are permitted without prior consent.</p>
+            <p>Third-party libraries (TensorFlow.js, Teachable Machine, etc.) are used under their respective licenses (such as Apache 2.0), whose terms take precedence.</p>
+        </section>
 
-        <section class="card">
+        <section class="card" data-lang="ko">
             <h2>제7조 (광고)</h2>
             <p>서비스는 운영을 위해 Google AdSense 등 제3자 광고 파트너의 광고를 게재할 수 있습니다. 광고의 콘텐츠는 광고주 또는 광고 네트워크의 책임이며, 서비스 운영자는 광고를 통해 제공되는 외부 사이트의 내용에 대해 책임을 지지 않습니다.</p>
         </section>
+        <section class="card" data-lang="en">
+            <h2>Article 7 (Advertising)</h2>
+            <p>The Service may display ads from third-party partners such as Google AdSense to support its operation. Ad content is the responsibility of the advertiser or ad network. The Service operator is not responsible for the content of external sites linked through ads.</p>
+        </section>
 
-        <section class="card">
+        <section class="card" data-lang="ko">
             <h2>제8조 (개인정보 보호)</h2>
             <p>이용자의 개인정보는 별도의 <a href="./privacy.html">개인정보처리방침</a>에 따라 보호됩니다. 본 서비스는 사용자의 사진을 외부 서버에 저장하지 않으며, 분석은 모두 사용자 브라우저 안에서 수행됩니다.</p>
         </section>
+        <section class="card" data-lang="en">
+            <h2>Article 8 (Privacy)</h2>
+            <p>User privacy is protected under our separate <a href="./privacy.html">Privacy Policy</a>. The Service does not store user images on any server, and analysis runs entirely inside the user's browser.</p>
+        </section>
 
-        <section class="card">
+        <section class="card" data-lang="ko">
             <h2>제9조 (약관의 변경)</h2>
             <p>본 약관은 관련 법령 및 서비스 운영 상황에 따라 변경될 수 있습니다. 변경 시 본 페이지의 ‘최종 수정일’이 갱신되며, 중요한 변경은 사이트 내 공지를 통해 안내됩니다. 변경 후에도 서비스를 계속 이용하시는 것은 변경된 약관에 동의하시는 것으로 간주됩니다.</p>
         </section>
+        <section class="card" data-lang="en">
+            <h2>Article 9 (Changes to These Terms)</h2>
+            <p>These Terms may change as relevant laws or service operations evolve. Changes will be reflected by updating the "Last updated" date on this page; major changes will be announced through a Site notice. Continued use of the Service after changes constitutes acceptance of the updated Terms.</p>
+        </section>
 
-        <section class="card">
+        <section class="card" data-lang="ko">
             <h2>제10조 (분쟁의 해결)</h2>
             <p>본 약관과 관련한 분쟁은 대한민국 법령을 준거법으로 하며, 양 당사자는 신의성실의 원칙에 따라 우선 협의로 해결하기 위해 노력합니다. 협의가 어려울 경우 민사소송법상 관할 법원에서 분쟁을 해결합니다.</p>
+        </section>
+        <section class="card" data-lang="en">
+            <h2>Article 10 (Dispute Resolution)</h2>
+            <p>These Terms are governed by the laws of the Republic of Korea. Both parties shall make good-faith efforts to resolve disputes through discussion. If resolution is not possible, disputes shall be settled in the court with jurisdiction under the Civil Procedure Act.</p>
         </section>
     </main>
 
     <footer class="site-footer">
         <div class="footer-wrapper">
-            <div>© 2026 동물상 테스트. 모든 권리 보유.</div>
+            <div>
+                <span data-lang="ko">© 2026 동물상 테스트. 모든 권리 보유.</span>
+                <span data-lang="en">© 2026 Animal Face Test. All rights reserved.</span>
+            </div>
             <ul class="footer-links">
-                <li><a href="./about.html">소개</a></li>
-                <li><a href="./guide.html">동물상 가이드</a></li>
-                <li><a href="./privacy.html">개인정보처리방침</a></li>
-                <li><a href="./terms.html">이용약관</a></li>
+                <li><a href="./about.html"><span data-lang="ko">소개</span><span data-lang="en">About</span></a></li>
+                <li><a href="./guide.html"><span data-lang="ko">동물상 가이드</span><span data-lang="en">Guide</span></a></li>
+                <li><a href="./privacy.html"><span data-lang="ko">개인정보처리방침</span><span data-lang="en">Privacy Policy</span></a></li>
+                <li><a href="./terms.html"><span data-lang="ko">이용약관</span><span data-lang="en">Terms of Service</span></a></li>
             </ul>
         </div>
     </footer>

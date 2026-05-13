@@ -63,6 +63,47 @@ img { max-width: 100%; height: auto; }
 
 .hidden { display: none !important; }
 
+/* ------- i18n ------- */
+html[lang="ko"] [data-lang="en"],
+html[lang="en"] [data-lang="ko"] {
+    display: none !important;
+}
+
+.lang-toggle {
+    display: inline-flex;
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    overflow: hidden;
+    background-color: var(--container-bg);
+}
+
+.lang-btn {
+    background: none;
+    border: none;
+    padding: 0.3rem 0.65rem;
+    font-size: 0.82rem;
+    cursor: pointer;
+    color: var(--text-soft);
+    font-weight: 600;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.lang-btn.active {
+    background-color: var(--btn-bg);
+    color: white;
+}
+
+.lang-btn:not(.active):hover {
+    background-color: var(--border-color);
+    color: var(--text-color);
+}
+
+.header-tools {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 /* ------- Header & Nav ------- */
 .site-header {
     position: sticky;

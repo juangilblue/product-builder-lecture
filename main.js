@@ -1,15 +1,39 @@
 const MODEL_URL = "https://teachablemachine.withgoogle.com/models/btiMd91SP/";
 
 const CLASS_META = {
-  "강아지": { emoji: "🐶", label: "강아지상", description: "다정하고 친근한 강아지상이에요!" },
-  "고양이": { emoji: "🐱", label: "고양이상", description: "도도하고 매력적인 고양이상이에요!" },
-  "dog":   { emoji: "🐶", label: "강아지상", description: "다정하고 친근한 강아지상이에요!" },
-  "cat":   { emoji: "🐱", label: "고양이상", description: "도도하고 매력적인 고양이상이에요!" },
+  "강아지": {
+    emoji: "🐶",
+    label: { ko: "강아지상", en: "Dog Face" },
+    description: { ko: "다정하고 친근한 강아지상이에요!", en: "A warm and friendly dog-face vibe!" },
+  },
+  "고양이": {
+    emoji: "🐱",
+    label: { ko: "고양이상", en: "Cat Face" },
+    description: { ko: "도도하고 매력적인 고양이상이에요!", en: "A chic and captivating cat-face vibe!" },
+  },
+  "dog": {
+    emoji: "🐶",
+    label: { ko: "강아지상", en: "Dog Face" },
+    description: { ko: "다정하고 친근한 강아지상이에요!", en: "A warm and friendly dog-face vibe!" },
+  },
+  "cat": {
+    emoji: "🐱",
+    label: { ko: "고양이상", en: "Cat Face" },
+    description: { ko: "도도하고 매력적인 고양이상이에요!", en: "A chic and captivating cat-face vibe!" },
+  },
+};
+
+const TEXT = {
+  loadFail: { ko: "모델을 불러오지 못했어요. 새로고침해주세요.", en: "Failed to load the model. Please refresh." },
+  webcamStart: { ko: "웹캠 시작", en: "Start Webcam" },
+  webcamStop: { ko: "웹캠 종료", en: "Stop Webcam" },
+  webcamError: { ko: "웹캠을 사용할 수 없어요. 브라우저 권한을 확인해주세요.", en: "Cannot access the webcam. Please check browser permissions." },
 };
 
 let model = null;
 let webcam = null;
 let webcamLoopId = null;
+let lastPredictions = null;
 
 const loadingEl = document.getElementById("loading");
 const mainContentEl = document.getElementById("main-content");
@@ -26,15 +50,23 @@ const resultSection = document.getElementById("result-section");
 const verdictEl = document.getElementById("verdict");
 const resultBarsEl = document.getElementById("result-bars");
 
-if (!loadingEl) {
-  // Not on the test page; do nothing.
-} else {
-  init();
+function lang() {
+  return (window.getCurrentLang && window.getCurrentLang()) || "ko";
 }
+
+if (loadingEl) init();
 
 async function init() {
   await loadModel();
   bindEvents();
+  document.addEventListener("langchange", () => {
+    if (lastPredictions) showResult(lastPredictions);
+    if (webcam) {
+      webcamToggleBtn.textContent = TEXT.webcamStop[lang()];
+    } else {
+      webcamToggleBtn.textContent = TEXT.webcamStart[lang()];
+    }
+  });
 }
 
 async function loadModel() {
@@ -43,7 +75,7 @@ async function loadModel() {
     loadingEl.classList.add("hidden");
     mainContentEl.classList.remove("hidden");
   } catch (err) {
-    loadingEl.textContent = "모델을 불러오지 못했어요. 새로고침해주세요.";
+    loadingEl.textContent = TEXT.loadFail[lang()];
     console.error(err);
   }
 }
@@ -72,10 +104,10 @@ function bindEvents() {
   webcamToggleBtn.addEventListener("click", async () => {
     if (webcam) {
       stopWebcam();
-      webcamToggleBtn.textContent = "웹캠 시작";
+      webcamToggleBtn.textContent = TEXT.webcamStart[lang()];
     } else {
       await startWebcam();
-      webcamToggleBtn.textContent = "웹캠 종료";
+      webcamToggleBtn.textContent = TEXT.webcamStop[lang()];
     }
   });
 }
@@ -87,7 +119,7 @@ function switchMode(mode) {
     uploadSection.classList.remove("hidden");
     webcamSection.classList.add("hidden");
     stopWebcam();
-    webcamToggleBtn.textContent = "웹캠 시작";
+    webcamToggleBtn.textContent = TEXT.webcamStart[lang()];
   } else {
     webcamModeBtn.classList.add("active");
     uploadModeBtn.classList.remove("active");
@@ -95,6 +127,7 @@ function switchMode(mode) {
     uploadSection.classList.add("hidden");
   }
   resultSection.classList.add("hidden");
+  lastPredictions = null;
 }
 
 function handleImageFile(file) {
@@ -124,7 +157,7 @@ async function startWebcam() {
     webcamContainer.appendChild(webcam.canvas);
     webcamLoop();
   } catch (err) {
-    alert("웹캠을 사용할 수 없어요. 브라우저 권한을 확인해주세요.");
+    alert(TEXT.webcamError[lang()]);
     console.error(err);
   }
 }
@@ -149,21 +182,29 @@ async function webcamLoop() {
 }
 
 function showResult(predictions) {
+  lastPredictions = predictions;
+  const L = lang();
   resultSection.classList.remove("hidden");
   predictions.sort((a, b) => b.probability - a.probability);
   const top = predictions[0];
-  const meta = CLASS_META[top.className] || { emoji: "✨", label: top.className, description: "" };
-  verdictEl.innerHTML = `${meta.emoji} ${meta.label} ${meta.emoji}<br><span class="verdict-desc">${meta.description}</span>`;
+  const meta = CLASS_META[top.className] || {
+    emoji: "✨",
+    label: { ko: top.className, en: top.className },
+    description: { ko: "", en: "" },
+  };
+  verdictEl.innerHTML =
+    `${meta.emoji} ${meta.label[L]} ${meta.emoji}<br>` +
+    `<span class="verdict-desc">${meta.description[L]}</span>`;
 
   resultBarsEl.innerHTML = "";
   predictions.forEach((p) => {
-    const m = CLASS_META[p.className] || { emoji: "", label: p.className };
+    const m = CLASS_META[p.className] || { emoji: "", label: { ko: p.className, en: p.className } };
     const pct = (p.probability * 100).toFixed(1);
     const bar = document.createElement("div");
     bar.className = "result-bar";
     bar.innerHTML = `
       <div class="result-bar-label">
-        <span>${m.emoji} ${m.label}</span>
+        <span>${m.emoji} ${m.label[L]}</span>
         <span class="result-bar-pct">${pct}%</span>
       </div>
       <div class="result-bar-track">

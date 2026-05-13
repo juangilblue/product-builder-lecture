@@ -4,67 +4,106 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>동물상 테스트 - 강아지상 vs 고양이상 AI 분석</title>
+    <meta name="title-ko" content="동물상 테스트 - 강아지상 vs 고양이상 AI 분석">
+    <meta name="title-en" content="Animal Face Test - AI-Powered Dog vs Cat Analysis">
     <meta name="description" content="AI가 사진을 분석해 강아지상인지 고양이상인지 알려드립니다. 무료로 즉시 결과를 확인하고, 동물상별 특징과 매력 포인트도 함께 살펴보세요.">
-    <meta name="keywords" content="동물상 테스트, 강아지상, 고양이상, 얼굴 분석, AI 테스트, 동물상 가이드">
+    <meta name="keywords" content="동물상 테스트, 강아지상, 고양이상, 얼굴 분석, AI 테스트, 동물상 가이드, animal face test, dog face, cat face">
     <meta name="author" content="동물상 테스트">
     <meta property="og:title" content="동물상 테스트 - 강아지상 vs 고양이상 AI 분석">
-    <meta property="og:description" content="AI가 사진을 분석해 강아지상인지 고양이상인지 알려드립니다. 무료로 즉시 결과를 확인하세요.">
+    <meta property="og:description" content="AI가 사진을 분석해 강아지상인지 고양이상인지 알려드립니다.">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ko_KR">
+    <meta property="og:locale:alternate" content="en_US">
     <link rel="canonical" href="https://juangilblue.github.io/product-builder-lecture/">
     <meta name="google-adsense-account" content="ca-pub-4924318808009309">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q1BQ98D4QX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-Q1BQ98D4QX');
+    </script>
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🐶%3C/text%3E%3C/svg%3E">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4924318808009309"
          crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
     <script src="theme.js"></script>
+    <script src="i18n.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
 </head>
 <body>
     <header class="site-header">
         <div class="nav-wrapper">
-            <a href="./" class="brand">🐶 동물상 테스트 🐱</a>
+            <a href="./" class="brand">🐶 <span data-lang="ko">동물상 테스트</span><span data-lang="en">Animal Face Test</span> 🐱</a>
             <ul class="nav-links">
-                <li><a href="./" class="active">테스트</a></li>
-                <li><a href="./guide.html">동물상 가이드</a></li>
-                <li><a href="./about.html">소개</a></li>
+                <li><a href="./" class="active"><span data-lang="ko">테스트</span><span data-lang="en">Test</span></a></li>
+                <li><a href="./guide.html"><span data-lang="ko">동물상 가이드</span><span data-lang="en">Guide</span></a></li>
+                <li><a href="./about.html"><span data-lang="ko">소개</span><span data-lang="en">About</span></a></li>
             </ul>
-            <button id="theme-toggle" aria-label="다크 모드 전환">🌓</button>
+            <div class="header-tools">
+                <div class="lang-toggle" role="group" aria-label="Language">
+                    <button class="lang-btn" data-lang-set="ko">한</button>
+                    <button class="lang-btn" data-lang-set="en">EN</button>
+                </div>
+                <button id="theme-toggle"
+                    aria-label="다크 모드 전환"
+                    data-ko-aria-label="다크 모드 전환"
+                    data-en-aria-label="Toggle dark mode">🌓</button>
+            </div>
         </div>
     </header>
 
     <main>
         <section class="hero">
-            <h1>🐶 동물상 테스트 🐱</h1>
-            <p class="subtitle">사진 한 장이면 끝! AI가 강아지상인지 고양이상인지 알려드려요.</p>
+            <h1>🐶 <span data-lang="ko">동물상 테스트</span><span data-lang="en">Animal Face Test</span> 🐱</h1>
+            <p class="subtitle" data-lang="ko">사진 한 장이면 끝! AI가 강아지상인지 고양이상인지 알려드려요.</p>
+            <p class="subtitle" data-lang="en">Just one photo. Let AI tell you whether you have a dog or a cat face.</p>
         </section>
 
-        <section class="test-card" aria-labelledby="test-heading">
-            <h2 id="test-heading" class="visually-hidden" style="position:absolute;left:-9999px;">테스트 영역</h2>
-            <div id="loading" class="loading">AI 모델을 불러오는 중...</div>
+        <section class="test-card">
+            <div id="loading" class="loading">
+                <span data-lang="ko">AI 모델을 불러오는 중...</span>
+                <span data-lang="en">Loading AI model...</span>
+            </div>
 
             <div id="main-content" class="hidden">
                 <div class="mode-buttons" role="tablist">
-                    <button id="upload-mode-btn" class="mode-btn active" role="tab">📷 사진 업로드</button>
-                    <button id="webcam-mode-btn" class="mode-btn" role="tab">🎥 웹캠</button>
+                    <button id="upload-mode-btn" class="mode-btn active" role="tab">
+                        <span data-lang="ko">📷 사진 업로드</span>
+                        <span data-lang="en">📷 Upload Photo</span>
+                    </button>
+                    <button id="webcam-mode-btn" class="mode-btn" role="tab">
+                        <span data-lang="ko">🎥 웹캠</span>
+                        <span data-lang="en">🎥 Webcam</span>
+                    </button>
                 </div>
 
                 <div id="upload-section" class="input-section">
                     <label for="file-input" class="upload-area" id="upload-area">
                         <div class="upload-placeholder">
                             <div class="upload-icon">📁</div>
-                            <p>클릭하거나 사진을 끌어다 놓으세요</p>
-                            <p class="upload-hint">JPG, PNG 지원 · 정면 얼굴 사진 권장</p>
+                            <p data-lang="ko">클릭하거나 사진을 끌어다 놓으세요</p>
+                            <p data-lang="en">Click or drop a photo here</p>
+                            <p class="upload-hint" data-lang="ko">JPG, PNG 지원 · 정면 얼굴 사진 권장</p>
+                            <p class="upload-hint" data-lang="en">JPG, PNG supported · Front-facing photo recommended</p>
                         </div>
-                        <img id="preview-img" class="hidden" alt="업로드된 이미지 미리보기">
+                        <img id="preview-img" class="hidden"
+                            alt="업로드된 이미지 미리보기"
+                            data-ko-alt="업로드된 이미지 미리보기"
+                            data-en-alt="Uploaded image preview">
                     </label>
                     <input type="file" id="file-input" accept="image/*" hidden>
                 </div>
 
                 <div id="webcam-section" class="input-section hidden">
                     <div id="webcam-container"></div>
-                    <button id="webcam-toggle-btn" class="action-btn">웹캠 시작</button>
+                    <button id="webcam-toggle-btn" class="action-btn">
+                        <span data-lang="ko">웹캠 시작</span>
+                        <span data-lang="en">Start Webcam</span>
+                    </button>
                 </div>
 
                 <div id="result-section" class="result-section hidden" aria-live="polite">
@@ -74,40 +113,63 @@
             </div>
         </section>
 
-        <section>
+        <section data-lang="ko">
             <h2>동물상 테스트란 무엇인가요?</h2>
             <p>동물상 테스트는 사람의 얼굴 인상을 동물의 분위기에 빗대어 표현하는 한국에서 널리 알려진 재미있는 분류 방식이에요. 이목구비의 비율, 눈매, 입꼬리, 얼굴형 같은 시각적 특징을 종합해서 어떤 동물의 인상에 가까운지를 판단하죠. 친구들과 어울려 놀거나 자기 매력을 새롭게 발견할 때 자주 활용됩니다.</p>
             <p>이 사이트의 테스트는 Google Teachable Machine으로 직접 학습시킨 이미지 분류 AI를 사용해 강아지상과 고양이상 두 가지로 분류해드려요. 모델은 사진의 전반적인 인상을 학습된 데이터와 비교해 가장 가까운 쪽의 확률을 계산합니다.</p>
         </section>
+        <section data-lang="en">
+            <h2>What is the Animal Face Test?</h2>
+            <p>The Animal Face Test is a popular Korean way to describe a person's vibe by comparing their facial impression to an animal. By looking at proportions, eye shape, mouth corners, and overall face shape, people guess which animal someone "looks like." It's a fun icebreaker and a way to explore your charm from a fresh angle.</p>
+            <p>This site uses an image classifier trained with Google's Teachable Machine to sort photos into two impressions: dog-face and cat-face. The model compares the overall feel of your photo with its training data and returns a probability for each class.</p>
+        </section>
 
         <section>
-            <h2>두 가지 인상, 한눈에 비교하기</h2>
+            <h2>
+                <span data-lang="ko">두 가지 인상, 한눈에 비교하기</span>
+                <span data-lang="en">Two Impressions at a Glance</span>
+            </h2>
             <div class="two-col">
                 <div class="card">
-                    <h3>🐶 강아지상의 인상</h3>
-                    <ul class="feature-list">
+                    <h3>🐶 <span data-lang="ko">강아지상의 인상</span><span data-lang="en">The Dog-Face Vibe</span></h3>
+                    <ul class="feature-list" data-lang="ko">
                         <li>동그랗고 큰 눈</li>
                         <li>짧고 둥근 코끝</li>
                         <li>도톰한 볼살과 부드러운 턱선</li>
                         <li>웃을 때 환하게 올라가는 입꼬리</li>
                         <li>전체적으로 친근하고 다정한 분위기</li>
                     </ul>
+                    <ul class="feature-list" data-lang="en">
+                        <li>Round, large eyes</li>
+                        <li>Short, rounded nose tip</li>
+                        <li>Plump cheeks and a soft jawline</li>
+                        <li>Mouth corners that lift brightly when smiling</li>
+                        <li>An overall friendly, warm vibe</li>
+                    </ul>
                 </div>
                 <div class="card">
-                    <h3>🐱 고양이상의 인상</h3>
-                    <ul class="feature-list">
+                    <h3>🐱 <span data-lang="ko">고양이상의 인상</span><span data-lang="en">The Cat-Face Vibe</span></h3>
+                    <ul class="feature-list" data-lang="ko">
                         <li>끝이 살짝 올라간 눈매</li>
                         <li>또렷한 콧대와 좁은 코</li>
                         <li>갸름한 V라인 턱</li>
                         <li>얇고 단정한 입술</li>
                         <li>도도하고 시크한 분위기</li>
                     </ul>
+                    <ul class="feature-list" data-lang="en">
+                        <li>Eyes with slightly upturned outer corners</li>
+                        <li>A clean, defined nose bridge</li>
+                        <li>A sharp, V-line jaw</li>
+                        <li>Thin, tidy lips</li>
+                        <li>An aloof, chic atmosphere</li>
+                    </ul>
                 </div>
             </div>
-            <p style="margin-top: 1rem;">더 자세한 특징과 매력 포인트가 궁금하다면 <a href="./guide.html">동물상 가이드</a> 페이지를 확인해보세요.</p>
+            <p style="margin-top: 1rem;" data-lang="ko">더 자세한 특징과 매력 포인트가 궁금하다면 <a href="./guide.html">동물상 가이드</a> 페이지를 확인해보세요.</p>
+            <p style="margin-top: 1rem;" data-lang="en">For deeper characteristics and styling tips, head over to the <a href="./guide.html">Animal Face Guide</a>.</p>
         </section>
 
-        <section>
+        <section data-lang="ko">
             <h2>이렇게 사용해보세요</h2>
             <ol>
                 <li><strong>정면 사진 준비:</strong> 얼굴이 잘 보이는 정면 사진일수록 정확도가 높아져요. 모자나 마스크로 가려진 사진은 피해주세요.</li>
@@ -119,44 +181,92 @@
                 ⚠️ 본 테스트는 오락 목적으로 제공되며, 의학적·심리학적 진단이나 외모 평가의 도구가 아닙니다. 결과는 가볍게 즐겨주세요.
             </div>
         </section>
+        <section data-lang="en">
+            <h2>How to Use</h2>
+            <ol>
+                <li><strong>Use a front-facing photo:</strong> Clear, front-facing photos give the best accuracy. Avoid photos where a hat or mask blocks the face.</li>
+                <li><strong>Upload or use webcam:</strong> Pick a photo from your device, or turn on the webcam for live analysis.</li>
+                <li><strong>Check the result:</strong> See your dog-face / cat-face probabilities, along with a quick personality blurb.</li>
+                <li><strong>Try several shots:</strong> Angle and expression change the result, so try a few photos for fun.</li>
+            </ol>
+            <div class="disclaimer">
+                ⚠️ This test is purely for entertainment. It is not a medical, psychological, or appearance assessment. Take the result lightly.
+            </div>
+        </section>
 
         <section>
-            <h2>자주 묻는 질문</h2>
-            <details class="faq-item">
+            <h2>
+                <span data-lang="ko">자주 묻는 질문</span>
+                <span data-lang="en">Frequently Asked Questions</span>
+            </h2>
+
+            <details class="faq-item" data-lang="ko">
                 <summary>업로드한 사진은 서버에 저장되나요?</summary>
                 <p>아니요. 모든 분석은 사용자의 브라우저 안에서만 진행되며, 사진은 어떤 서버에도 전송되거나 저장되지 않습니다. 페이지를 닫으면 모든 데이터가 사라져요. 자세한 내용은 <a href="./privacy.html">개인정보처리방침</a>에서 확인하실 수 있습니다.</p>
             </details>
-            <details class="faq-item">
+            <details class="faq-item" data-lang="en">
+                <summary>Is my uploaded photo stored on a server?</summary>
+                <p>No. All analysis happens inside your browser. Your photo is never uploaded or saved on any server. When you close the page, all data is gone. See the <a href="./privacy.html">Privacy Policy</a> for details.</p>
+            </details>
+
+            <details class="faq-item" data-lang="ko">
                 <summary>결과가 매번 똑같지 않은 이유는?</summary>
                 <p>AI 모델은 사진의 픽셀 정보를 학습된 패턴과 비교해 확률을 계산해요. 그래서 표정·각도·조명이 조금만 달라져도 결과가 살짝 바뀔 수 있습니다. 같은 사람이라도 사진에 따라 강아지상과 고양이상 확률이 달라질 수 있어요.</p>
             </details>
-            <details class="faq-item">
+            <details class="faq-item" data-lang="en">
+                <summary>Why does the result change between photos?</summary>
+                <p>The model compares pixel patterns in your photo with its training data. Small changes in expression, angle, or lighting can shift the result. Even for the same person, different photos can produce different dog/cat ratios.</p>
+            </details>
+
+            <details class="faq-item" data-lang="ko">
                 <summary>웹캠이 작동하지 않아요</summary>
                 <p>웹캠 사용에는 브라우저 권한 허용이 필요해요. 주소창 옆 카메라 아이콘을 눌러 권한을 확인하시고, https로 접속한 페이지에서만 동작합니다. 또한 다른 앱이 카메라를 점유하고 있다면 종료한 뒤 다시 시도해보세요.</p>
             </details>
-            <details class="faq-item">
+            <details class="faq-item" data-lang="en">
+                <summary>The webcam isn't working</summary>
+                <p>The webcam needs browser permission. Click the camera icon next to the URL bar and allow access. It also requires an HTTPS page. If another app is using the camera, close it and try again.</p>
+            </details>
+
+            <details class="faq-item" data-lang="ko">
                 <summary>모바일에서도 사용할 수 있나요?</summary>
                 <p>네, 모바일 브라우저에서도 동일하게 동작해요. 갤러리에서 사진을 선택하거나 카메라로 즉시 촬영해서 업로드할 수 있습니다.</p>
             </details>
-            <details class="faq-item">
+            <details class="faq-item" data-lang="en">
+                <summary>Does it work on mobile?</summary>
+                <p>Yes. The site runs on mobile browsers the same way. You can pick from the gallery or shoot a fresh photo with the camera and upload right away.</p>
+            </details>
+
+            <details class="faq-item" data-lang="ko">
                 <summary>강아지·고양이 외 다른 동물상은 없나요?</summary>
                 <p>현재 모델은 강아지상과 고양이상 두 가지만 학습되어 있어요. 추후 곰상, 여우상, 토끼상 등으로 확장될 수 있도록 데이터를 보완할 계획입니다.</p>
             </details>
-            <details class="faq-item">
+            <details class="faq-item" data-lang="en">
+                <summary>Are there other animal faces besides dog and cat?</summary>
+                <p>The current model only classifies dog and cat. We plan to expand into bear, fox, rabbit, and more as we collect richer data.</p>
+            </details>
+
+            <details class="faq-item" data-lang="ko">
                 <summary>제 결과를 어떻게 해석하면 되나요?</summary>
                 <p>예를 들어 강아지상 70% / 고양이상 30%라면 강아지상 인상이 우세하지만 고양이상의 매력도 일부 가지고 있다는 의미예요. 두 비율이 비슷하면 두 인상이 모두 어울리는 매력적인 얼굴이라는 뜻입니다.</p>
+            </details>
+            <details class="faq-item" data-lang="en">
+                <summary>How should I read my result?</summary>
+                <p>If you get 70% dog / 30% cat, the dog-face vibe is dominant but you still carry some cat-face charm. If the two are close, you have a balanced face that suits both impressions equally.</p>
             </details>
         </section>
     </main>
 
     <footer class="site-footer">
         <div class="footer-wrapper">
-            <div>© 2026 동물상 테스트. 모든 권리 보유.</div>
+            <div>
+                <span data-lang="ko">© 2026 동물상 테스트. 모든 권리 보유.</span>
+                <span data-lang="en">© 2026 Animal Face Test. All rights reserved.</span>
+            </div>
             <ul class="footer-links">
-                <li><a href="./about.html">소개</a></li>
-                <li><a href="./guide.html">동물상 가이드</a></li>
-                <li><a href="./privacy.html">개인정보처리방침</a></li>
-                <li><a href="./terms.html">이용약관</a></li>
+                <li><a href="./about.html"><span data-lang="ko">소개</span><span data-lang="en">About</span></a></li>
+                <li><a href="./guide.html"><span data-lang="ko">동물상 가이드</span><span data-lang="en">Guide</span></a></li>
+                <li><a href="./privacy.html"><span data-lang="ko">개인정보처리방침</span><span data-lang="en">Privacy Policy</span></a></li>
+                <li><a href="./terms.html"><span data-lang="ko">이용약관</span><span data-lang="en">Terms of Service</span></a></li>
             </ul>
         </div>
     </footer>
